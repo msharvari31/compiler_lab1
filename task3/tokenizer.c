@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-/* Helper functions (no <ctype.h>) */
 
 int isLetter(char c) {
     return (c >= 'a' && c <= 'z') ||
@@ -17,7 +16,7 @@ int isWhitespace(char c) {
     return (c == ' ' || c == '\t' || c == '\n');
 }
 
-/* Check if a string is a keyword */
+
 int isKeyword(char token[]) {
     int len = strlen(token);
 
@@ -33,12 +32,10 @@ int isKeyword(char token[]) {
     return 0;
 }
 
-/* Check operators */
 int isOperator(char c) {
     return (c == '+' || c == '-' || c == '*' || c == '/' || c == '=');
 }
 
-/* Check punctuation */
 int isPunctuation(char c) {
     return (c == '(' || c == ')' || c == '{' || c == '}' ||
             c == ';' || c == ',');
@@ -51,7 +48,6 @@ int main() {
 
     while ((c = getchar()) != EOF) {
 
-        /* Ignore whitespace */
         if (isWhitespace(c)) {
             if (idx > 0) {
                 token[idx] = '\0';
@@ -68,13 +64,11 @@ int main() {
             continue;
         }
 
-        /* Letter or digit → build token */
         if (isLetter(c) || isDigit(c)) {
             token[idx++] = c;
             continue;
         }
 
-        /* End current token before special char */
         if (idx > 0) {
             token[idx] = '\0';
 
@@ -88,21 +82,17 @@ int main() {
             idx = 0;
         }
 
-        /* Operator */
         if (isOperator(c)) {
             printf("<OPERATOR, %c>\n", c);
         }
-        /* Punctuation */
         else if (isPunctuation(c)) {
             printf("<PUNCTUATION, %c>\n", c);
         }
-        /* Unknown */
         else {
             printf("<UNKNOWN, %c>\n", c);
         }
     }
 
-    /* Flush remaining token at EOF */
     if (idx > 0) {
         token[idx] = '\0';
 
