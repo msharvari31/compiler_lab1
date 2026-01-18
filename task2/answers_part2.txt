@@ -1,0 +1,5 @@
+a. Number of arithmetic instructions in optimize_O0.s: 5
+
+b. Number of arithmetic instructions in optimize_O2.s: 1
+
+c. The compiler optimized all arithmetic operations into a single constant value x = 9.
